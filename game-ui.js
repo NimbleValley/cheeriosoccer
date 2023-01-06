@@ -26,7 +26,7 @@ async function unTransition() {
 }
 
 window.addEventListener('load', async function() {
-    //transition();
+    transition();
     await sleep(3000);
     unTransition();
 });
