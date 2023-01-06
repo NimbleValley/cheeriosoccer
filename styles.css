@@ -1,0 +1,367 @@
+html,
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Start Screen */
+
+#background-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    background: rgb(55, 43, 16);
+    background: linear-gradient(0deg, rgba(55, 43, 16, 1) 0%, rgba(10, 19, 48, 1) 100%);
+    z-index: -10;
+}
+
+.title {
+    position: absolute;
+    font-size: 6vw;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(245, 234, 220);
+    user-select: none;
+    margin: 5vh;
+    text-shadow: 0px 0px 2vh rgb(255, 255, 255);
+}
+
+.title::after {
+    transition-duration: 1s;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 5%;
+    left: 0;
+    bottom: 5%;
+    background-color: beige;
+    box-shadow: 0px 0px 2vh rgb(255, 255, 255);
+    border-radius: 0.5vh;
+}
+
+.title-span {
+    font-size: 20vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(132, 222, 250);
+    user-select: none;
+    opacity: 1;
+}
+
+.start-button {
+    margin-left: auto;
+    margin-right: auto;
+    width: 25vh;
+    text-align: center;
+    font-size: 10vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: beige;
+    user-select: none;
+    padding: 1vh 5vh 1vh 5vh;
+    border: 0.65vh beige solid;
+    margin-bottom: 5vh;
+    border-radius: 1vw;
+    box-shadow: 0px 0px 5vh rgba(245, 245, 220, 0.288);
+    transition-duration: 0.5s;
+}
+
+.start-button:hover {
+    cursor: pointer;
+    background-color: rgb(231, 207, 192);
+    color: black;
+    box-shadow: 0px 0px 10vh rgba(243, 176, 114, 0.781);
+    text-shadow: 0px 0px 2vh rgb(59, 53, 53);
+}
+
+#start-game-button {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    font-size: 3vw;
+    padding: 0 1vw 0 1vw;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: beige;
+    user-select: none;
+    border: 0.65vh beige solid;
+    margin-bottom: 5vh;
+    border-radius: 1vw;
+    box-shadow: 0px 0px 5vh rgba(245, 245, 220, 0.288);
+    transition-duration: 0.5s;
+}
+
+#start-game-button:hover {
+    cursor: pointer;
+    background-color: rgb(231, 207, 192);
+    color: black;
+    box-shadow: 0px 0px 2vh rgba(243, 176, 114, 0.781);
+    text-shadow: 0px 0px 2vh rgb(59, 53, 53);
+}
+
+#start-button-container {
+    position: absolute;
+    width: 100%;
+    top: 50vh;
+}
+
+#firework-canvas {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background: transparent;
+    background-color: transparent;
+    opacity: 0.5;
+    z-index: -5;
+}
+
+#title-container {
+    position: absolute;
+    top: 5vh;
+    width: 100%;
+    text-align: center;
+}
+
+/* Animation */
+
+.curtain {
+    position: absolute;
+    width: 100vw;
+    background-color: black;
+    height: 20vh;
+    transition: 0.75s;
+}
+
+.title-curtain::after {
+    content: "Cheerio";
+    font-size: 10vw;
+    position: absolute;
+    z-index: 100;
+    line-height: 5vw;
+    width: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: beige;
+    user-select: none;
+    text-align: center;
+}
+
+#white-fader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 10000;
+    display: none;
+    opacity: 0;
+}
+
+/* Menu */
+
+.menu-item {
+    opacity: 0;
+}
+
+#menu-container {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 25;
+}
+
+#num-player-container {
+    position: absolute;
+    width: fit-content;
+    right: 0;
+    margin: 10vh;
+}
+
+#slider-container {
+    display: flex;
+    position: absolute;
+    width: 60vh;
+    height: 8vh;
+    right: 0;
+    margin: 10vh;
+    font-size: 10vh;
+    justify-content: space-around;
+    line-height: 8vh;
+    text-shadow: 0px 0px 3vh beige;
+}
+
+#player-settings-container {
+    position: absolute;
+    width: 100vw;
+    height: 50vh;
+    bottom: 0;
+    margin: 5vw;
+    margin-left: 0;
+    display: flex;
+    justify-content: space-around
+}
+
+.player-settings {
+    width: 25%;
+    height: 100%;
+    border: 0.75vh solid beige;
+    border-radius: 1vh;
+    font-size: 8vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: beige;
+    user-select: none;
+    text-align: center;
+    text-shadow: 0px 0px 2vh beige;
+    box-shadow: 0px 0px 5vh rgba(245, 245, 220, 0.623);
+}
+
+#game-settings {
+    width: 15%;
+    height: 100%;
+    border: 0.75vh solid beige;
+    border-radius: 1vh;
+    box-shadow: 0px 0px 5vh rgba(245, 245, 220, 0.623);
+}
+
+/* UI */
+
+.slider {
+    position: relative;
+    background-color: rgb(89, 95, 95);
+    width: 30vh;
+    height: 8vh;
+    border-radius: 2vh;
+    transition-duration: 0.5s;
+    box-shadow: 0px 0px 3vh rgba(245, 245, 220, 0.637);
+}
+
+.slider:hover {
+    cursor: pointer;
+    background-color: rgb(140, 148, 148);
+}
+
+.slider-thumb {
+    transition: left 0.5s;
+    position: absolute;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background-color: rgb(223, 219, 213);
+    border-radius: 2vh;
+    box-shadow: 0px 0px 3vh rgba(0, 0, 0, 0.507);
+}
+
+.color-picker {
+    margin-top: 5vh;
+    width: 80%;
+    height: 50%;
+    border-radius: 1vh;
+    transition-duration: 0.5s;
+}
+
+.color-picker:hover {
+    cursor: pointer;
+    scale: 1.1;
+    box-shadow: 0px 0px 5vh beige;
+}
+
+.game-setting-label {
+    font-size: 3vw;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: beige;
+    user-select: none;
+    text-shadow: 0px 0px 2vh beige;
+}
+
+.game-setting-label:hover {
+    cursor: pointer;
+}
+
+.check {
+    width: 2vw;
+    height: 2vw;
+    margin: 1vw;
+    cursor: pointer;
+}
+
+/* GAME */
+#game-canvas {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgb(55, 43, 16);
+    background: linear-gradient(0deg, rgb(70, 56, 25) 0%, rgb(30, 49, 109) 100%);
+    z-index: -10;
+}
+
+#ticker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4vh;
+    background-color: black;
+    width: fit-content;
+    border-bottom: 0.35vh solid rgb(97, 92, 88);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: beige;
+    font-size: 3vh;
+    letter-spacing: 0.15vw;
+    user-select: none;
+    display: inline;
+    white-space: nowrap;
+    animation: move 10s infinite linear;
+    /* set the time to what you want of course */
+}
+
+@keyframes move {
+    to {
+        transform: translateX(-20%);
+    }
+}
+
+#score-container {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+}
+
+#score-board {
+    position: absolute;
+    width: 20vh;
+    border-top: 10vh solid rgb(31, 28, 28);
+    border-left: 5vh solid transparent;
+    border-right: 5vh solid transparent;
+    z-index: 1000;
+}
+
+#score-board {
+    position: absolute;
+    width: 20vh;
+    border-top: 10vh solid rgb(31, 28, 28);
+    border-left: 5vh solid transparent;
+    border-right: 5vh solid transparent;
+    z-index: 1000;
+}
+
+#score-board-border {
+    position: absolute;
+    width: 21vh;
+    border-top: 10.75vh solid rgb(133, 125, 125);
+    border-left: 5.5vh solid transparent;
+    border-right: 5.5vh solid transparent;
+    z-index: 0;
+}
+
+#score-text {
+    position: absolute;
+    top: -10vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: beige;
+    font-size: 8vh;
+    width: 100%;
+    text-align: center;
+}

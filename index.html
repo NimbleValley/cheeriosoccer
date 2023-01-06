@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Cheerio 2.0</title>
+</head>
+
+<body>
+    <canvas id="firework-canvas"></canvas>
+    <div id="background-container"></div>
+    <div id="title-container"></div>
+    <div id="start-button-container">
+        <div class="start-button" onclick="transition()">Start</div>
+        <div class="start-button">More</div>
+    </div>
+    <div class="curtain"></div>
+    <div class="curtain"></div>
+    <div class="curtain"></div>
+    <div class="curtain"></div>
+    <div class="curtain"></div>
+
+    <div id="menu-container">
+        <h1 class="menu-item title">Customization</h1>
+        <div id="slider-container" class="menu-item">
+            👤
+            <div class="slider" onclick="togglePlayerNum()">
+                <div class="slider-thumb" id="player-thumb"></div>
+            </div>
+            👥
+        </div>
+        <div id="player-settings-container">
+            <div id="player-one-settings" class="player-settings menu-item">Player 1
+                <input type="color" id="player-one-color" value="#d91414" class = "color-picker">
+            </div>
+            <div id="player-two-settings" class="player-settings menu-item">Player 2
+                <input type="color" id="player-two-color" value="#4bd2db" class = "color-picker">
+            </div>
+            <div id="game-settings" class="menu-item">
+                <input type="checkbox" id="cloud-select" name="checkbox" value="0" class="check">
+                <label for="cloud-select" class="game-setting-label"> Clouds </label>
+                <div id="start-game-button" onClick="whiteFade()">Start</div>
+            </div>
+        </div>
+    </div>
+    <div id="white-fader"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+<script src="firework.js"></script>
+<script src="index.js"></script>
+<script src="menu.js"></script>
+
+</html>
