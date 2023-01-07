@@ -7,6 +7,12 @@ var titleText = "Cheerio Soccer";
 var spans = [];
 var red = true;
 
+var fireworksOn = true;
+
+const fireworkCanvas = document.getElementById("firework-canvas");
+fireworkCanvas.style.bottom = "0";
+fireworkCanvas.style.opacity = 1;
+
 var curtains = document.getElementsByClassName("curtain");
 for (var i = 0; i < curtains.length; i++) {
     curtains[i].style.top = i * 20 + "vh";

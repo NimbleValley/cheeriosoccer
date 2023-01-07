@@ -1,4 +1,4 @@
-window.addEventListener("resize", resizeCanvas, false);
+window.addEventListener("resize", resizecanvasFire, false);
         window.addEventListener("DOMContentLoaded", onLoad, false);
         
         window.requestAnimationFrame = 
@@ -11,20 +11,20 @@ window.addEventListener("resize", resizeCanvas, false);
                 window.setTimeout(callback, 1000/60);
             };
         
-        var canvas, ctx, w, h, particles = [], probability = 0.04, xPoint, yPoint;
+        var canvasFire, ctxFire, w, h, particles = [], probability = 0.04, xPoint, yPoint;
         
         function onLoad() {
-            canvas = document.getElementById("firework-canvas");
-            ctx = canvas.getContext("2d");
-            resizeCanvas();
+            canvasFire = document.getElementById("firework-canvas");
+            ctxFire = canvasFire.getContext("2d");
+            resizecanvasFire();
             
             window.requestAnimationFrame(updateWorld);
         } 
         
-        function resizeCanvas() {
-            if (canvas) {
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
+        function resizecanvasFire() {
+            if (canvasFire) {
+                w = canvasFire.width = window.innerWidth;
+                h = canvasFire.height = window.innerHeight;
             }
         } 
         
@@ -35,7 +35,7 @@ window.addEventListener("resize", resizeCanvas, false);
         } 
         
         function update() {
-            if (particles.length < 500 && Math.random() < probability) {
+            if (particles.length < 500 && Math.random() < probability && fireworksOn) {
                 createFirework();
             }
             var alive = [];
@@ -48,15 +48,15 @@ window.addEventListener("resize", resizeCanvas, false);
         } 
         
         function paint() {
-            ctx.globalCompositeOperation = 'source-over';
-            var grd = ctx.createLinearGradient(0, 0, 0, h);
+            ctxFire.globalCompositeOperation = 'source-over';
+            var grd = ctxFire.createLinearGradient(0, 0, 0, h);
             grd.addColorStop(0, "#0a1330");
             grd.addColorStop(1, "#372b10");
-            ctx.fillStyle = grd;
-            ctx.fillRect(0, 0, w, h);
-            ctx.globalCompositeOperation = 'lighter';
+            ctxFire.fillStyle = grd;
+            ctxFire.fillRect(0, 0, w, h);
+            ctxFire.globalCompositeOperation = 'lighter';
             for (var i=0; i<particles.length; i++) {
-                particles[i].draw(ctx);
+                particles[i].draw(ctxFire);
             }
         } 
         

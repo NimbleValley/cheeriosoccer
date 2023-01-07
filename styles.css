@@ -107,13 +107,14 @@ body {
 
 #firework-canvas {
     position: absolute;
-    top: 0;
+    bottom: 0vh;
     height: 100vh;
     width: 100vw;
     background: transparent;
     background-color: transparent;
     opacity: 0.5;
     z-index: -5;
+    transition: opacity 0.5s;
 }
 
 #title-container {
@@ -131,6 +132,7 @@ body {
     background-color: black;
     height: 20vh;
     transition: 0.75s;
+    z-index: 200;
 }
 
 .title-curtain::after {
@@ -169,7 +171,7 @@ body {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    z-index: 25;
+    z-index: 200;
 }
 
 #num-player-container {
@@ -335,7 +337,7 @@ body {
     border-top: 10vh solid rgb(31, 28, 28);
     border-left: 5vh solid transparent;
     border-right: 5vh solid transparent;
-    z-index: 1000;
+    z-index: 100;
 }
 
 #score-board {
@@ -344,7 +346,7 @@ body {
     border-top: 10vh solid rgb(31, 28, 28);
     border-left: 5vh solid transparent;
     border-right: 5vh solid transparent;
-    z-index: 1000;
+    z-index: 100;
 }
 
 #score-board-border {
@@ -364,4 +366,36 @@ body {
     font-size: 8vh;
     width: 100%;
     text-align: center;
+}
+
+.goal {
+    position: relative;
+    bottom: 10vh;
+    width: 12vh;
+    height: 37vh;
+    background-image: url("img/goal.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#goal-container {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100vw;
+    align-items: flex-end;
+}
+
+#goal-text {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: beige;
+    font-size: 30vh;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    margin-top: 25vh;
+    scale: 0;
+    opacity: 0;
+    transition-duration: 0.75s;
 }

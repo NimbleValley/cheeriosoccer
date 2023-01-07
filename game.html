@@ -11,6 +11,7 @@
 
 <body>
     <canvas id="game-canvas"></canvas>
+    <canvas id="firework-canvas"></canvas>
 
     <div id="ticker">
         Cheerio Soccer - Nimble Games - Check Out More Games - Cheerio Soccer - Nimble Games - Check Out More Games -
@@ -30,8 +31,16 @@
     <div class="curtain"></div>
     <div class="curtain"></div>
 
+    <div id="goal-container">
+        <div class="goal"></div>
+        <div class="goal" style="scale: -1 1"></div>
+    </div>
+
+    <h1 id="goal-text">Goal!</h1>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+<script src="firework.js"></script>
 <script src="game-ui.js"></script>
 <script src="game.js"></script>
 
