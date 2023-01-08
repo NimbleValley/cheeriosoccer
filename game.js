@@ -5,6 +5,22 @@ canvas.height = window.innerHeight;
 
 console.log(ctx);
 
+var multiplayer = false;
+var aiCool = {
+    jump: 0,
+    down: 0
+};
+const coolTime = 5;
+
+if (localStorage.getItem("multiplayer") === "true") {
+    multiplayer = true;
+}
+
+if (multiplayer == undefined) {
+    alert("Error found, returning to game settings");
+    open("index.html", "_self");
+}
+
 window.addEventListener('resize', function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -115,7 +131,8 @@ var p1 = {
     vx: 0,
     vy: 0,
     jumping: false,
-    mass: playerSize * 200
+    mass: playerSize * 200,
+    color: localStorage.getItem("color-one")
 }
 
 var p2 = {
@@ -124,7 +141,8 @@ var p2 = {
     vx: 0,
     vy: 0,
     jumping: false,
-    mass: playerSize / 2
+    mass: playerSize / 2,
+    color: localStorage.getItem("color-two")
 }
 
 var ball = {
@@ -168,14 +186,14 @@ function render() {
     ctx.fillStyle = grd;
     ctx.fillRect(0, canvas.height * (9 / 10), canvas.width, canvas.height);
 
-    ctx.fillStyle = "#e37368";
+    ctx.fillStyle = p1.color;
     ctx.shadowBlur = 50;
-    ctx.shadowColor = "#a14a42";
+    ctx.shadowColor = p1.color;
     drawCirce(p1.x, p1.y, playerSize);
 
-    ctx.fillStyle = "#51a6d6";
+    ctx.fillStyle = p2.color;
     ctx.shadowBlur = 50;
-    ctx.shadowColor = "#4096ff";
+    ctx.shadowColor = p2.color;
     drawCirce(p2.x, p2.y, playerSize);
 
     ctx.fillStyle = "#e8e6e1";
@@ -201,18 +219,35 @@ function updatePhysics() {
         p1.vy = verticalAcceleration * 1.5;
     }
 
-    if (keys.left2) {
-        p2.vx -= horizontalAcceleration;
-    }
-    if (keys.right2) {
-        p2.vx += horizontalAcceleration;
-    }
-    if (keys.up2 && !p2.jumping) {
-        p2.vy -= verticalAcceleration;
-        p2.jumping = true;
-    }
-    if (keys.down2) {
-        p2.vy = verticalAcceleration * 1.5;
+    if (multiplayer) {
+        if (keys.left2) {
+            p2.vx -= horizontalAcceleration;
+        }
+        if (keys.right2) {
+            p2.vx += horizontalAcceleration;
+        }
+        if (keys.up2 && !p2.jumping) {
+            p2.vy -= verticalAcceleration;
+            p2.jumping = true;
+        }
+        if (keys.down2) {
+            p2.vy = verticalAcceleration * 1.5;
+        }
+    } else {
+        aiCool.jump--;
+        aiCool.down--;
+        p2.vx += aiHorizontal(ball, p1, p2, horizontalAcceleration);
+        if (!p2.jumping && aiCool.jump <= 0) {
+            p2.jumping = aiRequestJump(ball, p1, p2);
+            if (p2.jumping) {
+                p2.vy -= verticalAcceleration;
+                aiCool.jump = coolTime;
+            }
+        }
+        if (aiRequestDown(ball, p1, p2) && aiCool.down <= 0) {
+            p2.vy = verticalAcceleration * 1.5;
+            aiCool.down = coolTime;
+        }
     }
 
     p1.x += p1.vx;

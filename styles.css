@@ -333,16 +333,7 @@ body {
 
 #score-board {
     position: absolute;
-    width: 20vh;
-    border-top: 10vh solid rgb(31, 28, 28);
-    border-left: 5vh solid transparent;
-    border-right: 5vh solid transparent;
-    z-index: 100;
-}
-
-#score-board {
-    position: absolute;
-    width: 20vh;
+    width: 23vh;
     border-top: 10vh solid rgb(31, 28, 28);
     border-left: 5vh solid transparent;
     border-right: 5vh solid transparent;
@@ -351,7 +342,7 @@ body {
 
 #score-board-border {
     position: absolute;
-    width: 21vh;
+    width: 24vh;
     border-top: 10.75vh solid rgb(133, 125, 125);
     border-left: 5.5vh solid transparent;
     border-right: 5.5vh solid transparent;
@@ -398,4 +389,5 @@ body {
     scale: 0;
     opacity: 0;
     transition-duration: 0.75s;
+    user-select: none;
 }
