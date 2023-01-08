@@ -405,7 +405,8 @@ function resetField() {
         vx: 0,
         vy: 0,
         jumping: false,
-        mass: playerSize * 200
+        mass: playerSize * 200,
+        color: localStorage.getItem("color-one")
     }
 
     p2 = {
@@ -414,7 +415,8 @@ function resetField() {
         vx: 0,
         vy: 0,
         jumping: false,
-        mass: playerSize / 2
+        mass: playerSize / 2,
+        color: localStorage.getItem("color-two")
     }
 
     celebrate();
