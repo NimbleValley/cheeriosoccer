@@ -155,7 +155,7 @@ var ball = {
 
 var friction = 0.85;
 var ballFriction = 0.99;
-var horizontalAcceleration = canvas.width / 1066;
+var horizontalAcceleration = canvas.width / 1200;
 var maxHorizontal = canvas.width / 75;
 var maxVertical = canvas.height / 50;
 var verticalAcceleration = canvas.height / 75;
