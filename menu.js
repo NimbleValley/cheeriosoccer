@@ -37,6 +37,7 @@ async function whiteFade() {
     localStorage.setItem("multiplayer", !singlePlayer);
     localStorage.setItem("color-one", document.getElementById("player-one-color").value);
     localStorage.setItem("color-two", document.getElementById("player-two-color").value);
+    localStorage.setItem("difficulty", document.getElementById("difficulty-select").value);
 
     open("game.html", "_self");
 }
