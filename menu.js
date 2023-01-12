@@ -38,6 +38,7 @@ async function whiteFade() {
     localStorage.setItem("color-one", document.getElementById("player-one-color").value);
     localStorage.setItem("color-two", document.getElementById("player-two-color").value);
     localStorage.setItem("difficulty", document.getElementById("difficulty-select").value);
+    localStorage.setItem("spirits", document.getElementById("spirit-select").checked);
 
     open("game.html", "_self");
 }

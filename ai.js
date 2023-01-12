@@ -1,4 +1,7 @@
 function aiHorizontal(ball, p1, p2, horizontalAcceleration) {
+    if(localStorage.getItem("difficulty") == "easy") {
+        horizontalAcceleration *= 0.8;
+    }
     if(p2.x - (window.innerWidth * 1/50) < ball.x) {
         return horizontalAcceleration;
     }

@@ -99,6 +99,36 @@ body {
     text-shadow: 0px 0px 2vh rgb(59, 53, 53);
 }
 
+#difficulty-select {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    font-size: 3vw;
+    padding: 0 1vw 0 1vw;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: beige;
+    user-select: none;
+    border: 0.65vh beige solid;
+    margin-bottom: 5vh;
+    border-radius: 1vw;
+    box-shadow: 0px 0px 5vh rgba(245, 245, 220, 0.288);
+    transition-duration: 0.5s;
+    background-color: black;
+    align-self: center;
+    justify-self: center;
+}
+
+#difficulty-select:hover {
+    cursor: pointer;
+    background-color: rgb(231, 207, 192);
+    color: black;
+    box-shadow: 0px 0px 2vh rgba(243, 176, 114, 0.781);
+    text-shadow: 0px 0px 2vh rgb(59, 53, 53);
+}
+
 #start-button-container {
     position: absolute;
     width: 100%;
