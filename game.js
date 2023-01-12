@@ -5,12 +5,25 @@ canvas.height = window.innerHeight;
 
 console.log(ctx);
 
+var spirits = false;
+if (localStorage.getItem("spirits") === "true") {
+    spirits = true;
+}
+var spiritArray = [];
+
+var difficulty = localStorage.getItem("difficulty");
+
 var multiplayer = false;
 var aiCool = {
     jump: 0,
     down: 0
 };
-const coolTime = 5;
+
+var coolTime = 5;
+
+if (difficulty == "easy") {
+    var coolTime = 30;
+}
 
 if (localStorage.getItem("multiplayer") === "true") {
     multiplayer = true;
@@ -148,7 +161,7 @@ var p2 = {
 var ball = {
     x: canvas.width * (5 / 10),
     y: canvas.height * (0 / 10),
-    vx: 0,
+    vx: (Math.random() - 0.5) * canvas.width / 50,
     vy: 0,
     mass: ballSize / 10
 }
@@ -167,6 +180,10 @@ function animate() {
 
     if (playable) {
         updatePhysics();
+
+        if (spirits) {
+            updateSpirits();
+        }
     }
 
     render();
@@ -175,6 +192,23 @@ function animate() {
 }
 
 animate();
+
+function updateSpirits() {
+    if (spiritArray.length < 3) {
+        if (Math.random() * 100 < 2) {
+            spiritArray.push(new Spirit(Math.random() * window.innerWidth, Math.random() * window.innerHeight / 3, 200, 250, (Math.random() - 0.5) * horizontalAcceleration * 5, (Math.random() - 0.5) * horizontalAcceleration * 5, ctx));
+        }
+    }
+
+    for (var i = 0; i < spiritArray.length; i++) {
+        spiritArray[i].update(ball, ballSize);
+        spiritArray[i].render();
+        if (spiritArray[i].getDelete()) {
+            spiritArray.splice(i, 1);
+            i--;
+        }
+    }
+}
 
 function render() {
     ctx.shadowBlur = 0;
@@ -234,18 +268,22 @@ function updatePhysics() {
             p2.vy = verticalAcceleration * 1.5;
         }
     } else {
+        var jumpSpeedFactor = 1;
+        if (difficulty == "easy") {
+            jumpSpeedFactor = 0.8;
+        }
         aiCool.jump--;
         aiCool.down--;
         p2.vx += aiHorizontal(ball, p1, p2, horizontalAcceleration);
         if (!p2.jumping && aiCool.jump <= 0) {
             p2.jumping = aiRequestJump(ball, p1, p2);
             if (p2.jumping) {
-                p2.vy -= verticalAcceleration;
+                p2.vy -= verticalAcceleration * jumpSpeedFactor;
                 aiCool.jump = coolTime;
             }
         }
         if (aiRequestDown(ball, p1, p2) && aiCool.down <= 0) {
-            p2.vy = verticalAcceleration * 1.5;
+            p2.vy = verticalAcceleration * 1.5 * jumpSpeedFactor;
             aiCool.down = coolTime;
         }
     }
@@ -334,9 +372,11 @@ function updatePhysics() {
 
     if (ball.x + (ballSize) > canvas.width) {
         ball.vx = Math.abs(ball.vx) * -1;
+        ball.x = canvas.width - (ballSize);
     }
     if (ball.x - (ballSize) < 0) {
         ball.vx = Math.abs(ball.vx);
+        ball.x = (ballSize);
     }
     if (ball.y - (ballSize) < 0) {
         ball.vy = Math.abs(ball.vy);
@@ -396,7 +436,7 @@ function updatePhysics() {
 function resetField() {
     ball.x = canvas.width / 2;
     ball.y = canvas.height / 5;
-    ball.vx = 0;
+    ball.vx = (Math.random() - 0.5) * canvas.width / 50;
     ball.vy = 0;
 
     p1 = {

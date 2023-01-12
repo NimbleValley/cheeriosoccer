@@ -31,18 +31,24 @@ class Spirit {
         if (this.holding && this.timer < holdTime) {
             ball.x = this.x + this.width / 2;
             ball.y = this.y + this.height / 2;
-            this.x += this.vx * (Math.random() - 0.5) * 20;
-            this.y += this.vy * (Math.random() - 0.5) * 20;
+            this.x += this.vx * (Math.random() - 0.5) * 25;
+            this.y += this.vy * (Math.random() - 0.5) * 25;
             this.vx = this.initialx * (Math.random() - 0.5) * 2;
             this.vy = this.initialy * (Math.random() - 0.5) * 2;
-
             this.timer ++;
         }
 
         if(this.timer > holdTime) {
             this.holding = false;
-            ball.vx = (Math.random() - 0.5) * 20;
-            ball.vy = (Math.random() - 0.5) * 20;
+            ball.vx = (Math.random() - 0.5) * 50;
+            ball.vy = (Math.random() - 0.5) * 50;
+
+            this.timer ++;
+            
+            if(this.timer > holdTime * 5) {
+                this.timer = 0;
+                this.holding = false;
+            }
         }
     }
 
